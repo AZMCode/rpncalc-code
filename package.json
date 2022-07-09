@@ -14,7 +14,8 @@
             "id": "rpncalc",
             "aliases": ["RPNCalc", "rpncalc"],
             "extensions": [".rpncalc"],
-            "configuration": "./language-configuration.json"
+            "configuration": "./language-configuration.json",
+            "icon": { "light": "rpncalc_icon_light.png", "dark": "rpncalc_icon_dark" }
         }],
         "grammars": [{
             "language": "rpncalc",
