@@ -1,0 +1,94 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "RPNCalc",
+	"patterns": [ { "include": "#command_or_op" } ],
+    "foldingStartMarker": ".*\\[\\s*$",
+    "foldingStopMarker": "^\\s*\\]",
+	"repository": {
+        "insnum": {
+            "match": "(?<=^|\\s|;)\\s*([0-9]+)\\s*(;)",
+            "captures": {
+                "1": { "name": "constant.numeric" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "arith": {
+            "match": "(?<=^|\\s|;)\\s*(\\+|-|/|\\*)\\s*(;)",
+            "captures": {
+                "1": { "name": "entity.name.function" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "consts": {
+            "match": "(?i)(?<=^|\\s|;)\\s*(Pi|E|Inf)(;)",
+            "captures": {
+                "1": { "name": "constant.language" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "other_ops": {
+            "match": "(?i)(?<=^|\\s|;)\\s*(log10|log2|loge|root2|pow|logn|rootn|sin|cos|tan|asin|acos|atan)\\s*(;)",
+            "captures": {
+                "1": { "name": "entity.name.function" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "cmp": {
+            "match": "(?i)(?<=^|\\s|;)\\s*(=|!=|>|>=|<|<=)\\s*(;)",
+            "captures": {
+                "1": { "name": "entity.name.function" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "nop": {
+            "match": "(?<=^|\\s|;)\\s*(;)",
+            "captures": {
+                "1": {"name": "invalid"}
+            }
+        },
+        "simple_comms": {
+            "match": "(?i)(?<=^|\\s|;)\\s*(h|help|s|swap|rev|reverse|break|i|input|p|print})\\s*(;)",
+            "captures": {
+                "1": { "name": "keyword" },
+                "2": { "name": "punctuation.semicolon" }
+            }
+        },
+        "rep": {
+            "match": "(?i)(?<=^|\\s|;)\\s*((r|repeat)\\s*(\\(\\s*([0-9]+)\\s*\\))?)\\s*",
+            "captures": {
+                "2": { "name": "keyword.control"  },
+                "4": { "name": "constant.numeric" }
+            }
+        },
+        "opt_int": {
+            "match": "(?i)(?<=^|\\s|;)\\s*(((duplicate|dup|drop|d)\\s*([0-9]+)?\\s*(;)))",
+            "captures": {
+                "3" : { "name": "keyword" },
+                "4" : { "name": "constant.numeric" },
+                "5" : { "name": "punctuation.semicolon" }
+            }
+        },
+        "cond": {
+            "match": "(?<=^|\\s|;)\\s*(if|try)",
+            "captures": { "1": { "name": "keyword.control" } }
+        },
+        "command_or_op": {
+            "match": ".*",
+            "captures": {
+                "0": { "patterns": [
+                    { "include": "#insnum"       },
+                    { "include": "#arith"        },
+                    { "include": "#consts"       },
+                    { "include": "#other_ops"    },
+                    { "include": "#cmp"          },
+                    { "include": "#nop"          },
+                    { "include": "#simple_comms" },
+                    { "include": "#rep"          },
+                    { "include": "#opt_int"      },
+                    { "include": "#cond"   }
+                ] }
+            }
+        }
+    },
+	"scopeName": "source.rpncalc"
+}

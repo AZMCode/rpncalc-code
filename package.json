@@ -1,0 +1,25 @@
+{
+    "name": "rpncalc-code",
+    "displayName": "rpncalc-code",
+    "description": "Language Support for RPNCalc",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.69.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "rpncalc",
+            "aliases": ["RPNCalc", "rpncalc"],
+            "extensions": [".rpncalc"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "rpncalc",
+            "scopeName": "source.rpncalc",
+            "path": "./syntaxes/rpncalc.tmLanguage.json"
+        }]
+    }
+}
