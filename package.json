@@ -1,7 +1,7 @@
 {
     "name": "rpncalc-code",
     "displayName": "rpncalc-code",
-    "description": "Language Support for RPNCalc",
+    "description": "Syntax Highlighting Support for RPNCalc",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.69.0"
